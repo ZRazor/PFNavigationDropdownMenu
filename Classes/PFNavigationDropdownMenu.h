@@ -21,6 +21,7 @@
 @property (nonatomic, assign) NSTimeInterval animationDuration;
 @property (nonatomic, strong) UIColor *maskBackgroundColor;
 @property (nonatomic, assign) CGFloat maskBackgroundOpacity;
+@property (nonatomic, assign) BOOL hideSelectedCell;
 @property (nonatomic, copy) void(^didSelectItemAtIndexHandler)(NSUInteger indexPath);
 
 - (instancetype)initWithFrame:(CGRect)frame

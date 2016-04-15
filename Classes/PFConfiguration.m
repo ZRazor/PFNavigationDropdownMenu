@@ -38,5 +38,6 @@
     self.arrowPadding = 15;
     self.maskBackgroundColor = [UIColor blackColor];
     self.maskBackgroundOpacity = 0.3;
+    self.hideSelectedCell = NO;
 }
 @end

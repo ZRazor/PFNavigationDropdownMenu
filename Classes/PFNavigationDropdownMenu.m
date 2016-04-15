@@ -110,8 +110,12 @@
     self.backgroundView.alpha = 0;
     
     // Animation
+    NSUInteger cellsCount = self.items.count;
+    if (self.hideSelectedCell) {
+        cellsCount--;
+    }
     self.tableView.frame = CGRectMake(self.tableView.frame.origin.x,
-                                      -(CGFloat)(self.items.count) * self.configuration.cellHeight - 300,
+                                      -(CGFloat)(cellsCount) * self.configuration.cellHeight - 300,
                                       self.tableView.frame.size.width,
                                       self.tableView.frame.size.height);
     
@@ -153,13 +157,17 @@
                          
                      }
                      completion:nil];
-    
+
+    NSUInteger cellsCount = self.items.count;
+    if (self.hideSelectedCell) {
+        cellsCount--;
+    }
     [UIView animateWithDuration:self.configuration.animationDuration
                           delay:0
                         options:UIViewAnimationOptionTransitionNone
                      animations:^{
                          self.tableView.frame = CGRectMake(self.tableView.frame.origin.x,
-                                                           -(CGFloat)(self.items.count) * self.configuration.cellHeight - 300,
+                                                           -(CGFloat)(cellsCount) * self.configuration.cellHeight - 300,
                                                            self.tableView.frame.size.width,
                                                            self.tableView.frame.size.height);
                          self.backgroundView.alpha = 0;
@@ -258,4 +266,11 @@
     self.configuration.menuTitleColor = menuTitleColor;
     self.menuTitle.textColor = self.configuration.menuTitleColor;
 }
+
+- (void)setHideSelectedCell:(BOOL)hideSelectedCell
+{
+    self.configuration.hideSelectedCell = hideSelectedCell;
+    [self.tableView reloadData];
+}
+
 @end

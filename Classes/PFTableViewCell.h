@@ -16,5 +16,6 @@
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style
               reuseIdentifier:(NSString *)reuseIdentifier
-                configuration:(PFConfiguration *)configuration;
+                configuration:(PFConfiguration *)configuration
+                   isSelected:(BOOL)isSelected;
 @end

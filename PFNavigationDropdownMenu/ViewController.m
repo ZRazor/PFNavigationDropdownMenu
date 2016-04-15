@@ -39,6 +39,7 @@
     menuView.animationDuration = 0.5f;
     menuView.maskBackgroundColor = [UIColor blackColor];
     menuView.maskBackgroundOpacity = 0.3f;
+    menuView.hideSelectedCell = YES;
     menuView.didSelectItemAtIndexHandler = ^(NSUInteger indexPath){
         NSLog(@"Did select item at index: %ld", indexPath);
         self.selectedCellLabel.text = items[indexPath];

@@ -21,4 +21,5 @@
 @property (nonatomic, assign) NSTimeInterval animationDuration;
 @property (nonatomic, strong) UIColor *maskBackgroundColor;
 @property (nonatomic, assign) CGFloat maskBackgroundOpacity;
+@property (nonatomic, assign) BOOL hideSelectedCell;
 @end
