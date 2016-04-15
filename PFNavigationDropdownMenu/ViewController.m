@@ -21,7 +21,7 @@
     self.selectedCellLabel.text = items.firstObject;
     self.navigationController.navigationBar.translucent = NO;
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0/255.0 green:180/255.0 blue:220/255.0 alpha:1.0];
-    [UINavigationBar appearance].titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
+//    [UINavigationBar appearance].titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
     [UINavigationBar appearance].barStyle = UIBarStyleDefault;
     
     PFNavigationDropdownMenu *menuView = [[PFNavigationDropdownMenu alloc] initWithFrame:CGRectMake(0, 0, 300, 44)
@@ -34,6 +34,7 @@
     menuView.cellSelectionColor = [UIColor colorWithRed:0/255.0 green:160/255.0 blue:195/255.0 alpha: 1.0];
     menuView.cellTextLabelColor = [UIColor whiteColor];
     menuView.cellTextLabelFont = [UIFont fontWithName:@"Avenir-Heavy" size:17];
+    menuView.menuTitleColor = [UIColor whiteColor];
     menuView.arrowPadding = 15;
     menuView.animationDuration = 0.5f;
     menuView.maskBackgroundColor = [UIColor blackColor];

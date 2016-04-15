@@ -44,10 +44,10 @@
         self.menuButton = [[UIButton alloc] initWithFrame:frame];
         [self.menuButton addTarget:self action:@selector(menuButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:self.menuButton];
-        
+
         self.menuTitle = [[UILabel alloc] initWithFrame:frame];
         self.menuTitle.text = title;
-        self.menuTitle.textColor = [UINavigationBar appearance].titleTextAttributes[NSForegroundColorAttributeName];
+        self.menuTitle.textColor = self.configuration.menuTitleColor;
         self.menuTitle.textAlignment = NSTextAlignmentCenter;
         self.menuTitle.font = self.configuration.cellTextLabelFont;
         [self.menuButton addSubview:self.menuTitle];
@@ -119,7 +119,7 @@
                           delay:0
          usingSpringWithDamping:.7
           initialSpringVelocity:.5
-                        options:0
+                        options:nil
                      animations:^{
                          self.tableView.frame = CGRectMake(self.tableView.frame.origin.x,
                                                            -300,
@@ -143,7 +143,7 @@
                           delay:0
          usingSpringWithDamping:.7
           initialSpringVelocity:.5
-                        options:0
+                        options:nil
                      animations:^{
                          self.tableView.frame = CGRectMake(self.tableView.frame.origin.x,
                                                            -200,
@@ -251,5 +251,11 @@
 - (void)setMaskBackgroundOpacity:(CGFloat)maskBackgroundOpacity
 {
     self.configuration.maskBackgroundOpacity = maskBackgroundOpacity;
+}
+
+- (void)setMenuTitleColor:(UIColor *)menuTitleColor
+{
+    self.configuration.menuTitleColor = menuTitleColor;
+    self.menuTitle.textColor = self.configuration.menuTitleColor;
 }
 @end

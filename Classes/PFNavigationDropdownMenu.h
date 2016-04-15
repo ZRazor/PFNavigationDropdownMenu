@@ -10,6 +10,7 @@
 
 @interface PFNavigationDropdownMenu : UIView
 @property (nonatomic, assign) CGFloat cellHeight;
+@property (nonatomic, strong) UIColor *menuTitleColor;
 @property (nonatomic, strong) UIColor *cellBackgroundColor;
 @property (nonatomic, strong) UIColor *cellTextLabelColor;
 @property (nonatomic, strong) UIFont *cellTextLabelFont;

@@ -27,6 +27,7 @@
     NSString *arrowImagePath = [imageBundle pathForResource:@"arrow_down_icon" ofType:@"png"];
     
     self.cellHeight = 50;
+    self.menuTitleColor = [UINavigationBar appearance].titleTextAttributes[NSForegroundColorAttributeName];
     self.cellBackgroundColor = [UIColor whiteColor];
     self.cellTextLabelColor = [UIColor darkGrayColor];
     self.cellTextLabelFont = [UIFont fontWithName:@"HelveticaNeue-Bold" size:17];
