@@ -8,7 +8,6 @@
 
 #import "PFNavigationDropdownMenu.h"
 #import "PFTableView.h"
-#import "PFBackgroundView.h"
 
 @interface PFNavigationDropdownMenu()
 @property (nonatomic, strong) UIView *tableContainerView;
@@ -17,10 +16,11 @@
 @property (nonatomic, strong) UIButton *menuButton;
 @property (nonatomic, strong) UILabel *menuTitle;
 @property (nonatomic, strong) UIImageView *menuArrow;
-@property (nonatomic, strong) PFBackgroundView *backgroundView;
+@property (nonatomic, strong) UIView *backgroundView;
 @property (nonatomic, strong) PFTableView *tableView;
 @property (nonatomic, strong) NSArray *items;
 @property (nonatomic, assign) BOOL isShown;
+@property (nonatomic, assign) BOOL containerViewScrollEnabled;
 @property (nonatomic, assign) CGFloat navigationBarHeight;
 @end
 
@@ -40,7 +40,7 @@
         self.mainScreenBounds = [UIScreen mainScreen].bounds;
         self.isShown = NO;
         self.items = items;
-        
+
         // Init button as navigation title
         self.menuButton = [[UIButton alloc] initWithFrame:frame];
         [self.menuButton addTarget:self action:@selector(menuButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
@@ -52,15 +52,15 @@
         self.menuTitle.textAlignment = NSTextAlignmentCenter;
         self.menuTitle.font = self.configuration.cellTextLabelFont;
         [self.menuButton addSubview:self.menuTitle];
-        
+
         self.menuArrow = [[UIImageView alloc] initWithImage:self.configuration.arrowImage];
         [self.menuButton addSubview:self.menuArrow];
-        
+
         // Init table view
         self.tableView = [[PFTableView alloc] initWithFrame:CGRectMake(self.mainScreenBounds.origin.x,
-                                                                       self.mainScreenBounds.origin.y,
-                                                                       self.mainScreenBounds.size.width,
-                                                                       self.mainScreenBounds.size.height + 300 - 64)
+                        self.mainScreenBounds.origin.y,
+                        self.mainScreenBounds.size.width,
+                        self.mainScreenBounds.size.height + 300 - 64)
                                                       items:items
                                               configuration:self.configuration];
         [self.tableView setAlwaysBounceVertical:self.configuration.bounceVertical];
@@ -73,7 +73,7 @@
             strongSelf.isShown = NO;
             [strongSelf layoutSubviews];
         };
-        
+
     }
     return self;
 }
@@ -89,38 +89,42 @@
 
 - (void)showMenu
 {
+    if ([self.tableContainerView isKindOfClass:[UIScrollView class]]) {
+        self.containerViewScrollEnabled = ((UIScrollView *)self.tableContainerView).scrollEnabled;
+        [(UIScrollView *)self.tableContainerView setScrollEnabled:NO];
+    }
     // Table view header
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 300)];
     headerView.backgroundColor = self.configuration.cellBackgroundColor;
     self.tableView.tableHeaderView = headerView;
-    
+
     // Reload data to dismiss highlight color of selected cell
     [self.tableView reloadData];
-    
+
     // Init background view (under table view)
-    self.backgroundView = [[PFBackgroundView alloc] initWithFrame:self.mainScreenBounds];
+    self.backgroundView = [[UIView alloc] initWithFrame:self.mainScreenBounds];
     self.backgroundView.backgroundColor = self.configuration.maskBackgroundColor;
-    
+
     // Add background view & table view to container view
     [self.tableContainerView addSubview:self.backgroundView];
     [self.tableContainerView addSubview:self.tableView];
-    
+
     // Rotate arrow
     [self rotateArrow];
-    
+
     // Change background alpha
     self.backgroundView.alpha = 0;
-    
+
     // Animation
     NSUInteger cellsCount = self.items.count;
     if (self.hideSelectedCell) {
         cellsCount--;
     }
     self.tableView.frame = CGRectMake(self.tableView.frame.origin.x,
-                                      -(CGFloat)(cellsCount) * self.configuration.cellHeight - 300,
-                                      self.tableView.frame.size.width,
-                                      self.tableView.frame.size.height);
-    
+            -(CGFloat)(cellsCount) * self.configuration.cellHeight - 300,
+            self.tableView.frame.size.width,
+            self.tableView.frame.size.height);
+
     [UIView animateWithDuration:self.configuration.animationDuration * 1.5f
                           delay:0
          usingSpringWithDamping:.7
@@ -128,23 +132,26 @@
                         options:nil
                      animations:^{
                          self.tableView.frame = CGRectMake(self.tableView.frame.origin.x,
-                                                           -300,
-                                                           self.tableView.frame.size.width,
-                                                           self.tableView.frame.size.height);
+                                 -300,
+                                 self.tableView.frame.size.width,
+                                 self.tableView.frame.size.height);
                          self.backgroundView.alpha = self.configuration.maskBackgroundOpacity;
-                         
+
                      }
                      completion:nil];
 }
 
 - (void)hideMenu
 {
+    if ([self.tableContainerView isKindOfClass:[UIScrollView class]]) {
+        [(UIScrollView *)self.tableContainerView setScrollEnabled:self.containerViewScrollEnabled];
+    }
     // Rotate arrow
     [self rotateArrow];
-    
+
     // Change background alpha
     self.backgroundView.alpha = self.configuration.maskBackgroundOpacity;
-    
+
     [UIView animateWithDuration:self.configuration.animationDuration * 1.5f
                           delay:0
          usingSpringWithDamping:.7
@@ -152,11 +159,11 @@
                         options:nil
                      animations:^{
                          self.tableView.frame = CGRectMake(self.tableView.frame.origin.x,
-                                                           -200,
-                                                           self.tableView.frame.size.width,
-                                                           self.tableView.frame.size.height);
+                                 -200,
+                                 self.tableView.frame.size.width,
+                                 self.tableView.frame.size.height);
                          self.backgroundView.alpha = self.configuration.maskBackgroundOpacity;
-                         
+
                      }
                      completion:nil];
 
@@ -169,15 +176,15 @@
                         options:UIViewAnimationOptionTransitionNone
                      animations:^{
                          self.tableView.frame = CGRectMake(self.tableView.frame.origin.x,
-                                                           -(CGFloat)(cellsCount) * self.configuration.cellHeight - 300,
-                                                           self.tableView.frame.size.width,
-                                                           self.tableView.frame.size.height);
+                                 -(CGFloat)(cellsCount) * self.configuration.cellHeight - 300,
+                                 self.tableView.frame.size.width,
+                                 self.tableView.frame.size.height);
                          self.backgroundView.alpha = 0;
                      } completion:^(BOOL finished) {
-                         [self.tableView removeFromSuperview];
-                         [self.backgroundView removeFromSuperview];
-                     }];
-    
+                [self.tableView removeFromSuperview];
+                [self.backgroundView removeFromSuperview];
+            }];
+
 }
 
 - (void)rotateArrow
