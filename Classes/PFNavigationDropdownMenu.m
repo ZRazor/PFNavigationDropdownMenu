@@ -8,6 +8,7 @@
 
 #import "PFNavigationDropdownMenu.h"
 #import "PFTableView.h"
+#import "PFBackgroundView.h"
 
 @interface PFNavigationDropdownMenu()
 @property (nonatomic, strong) UIView *tableContainerView;
@@ -16,7 +17,7 @@
 @property (nonatomic, strong) UIButton *menuButton;
 @property (nonatomic, strong) UILabel *menuTitle;
 @property (nonatomic, strong) UIImageView *menuArrow;
-@property (nonatomic, strong) UIView *backgroundView;
+@property (nonatomic, strong) PFBackgroundView *backgroundView;
 @property (nonatomic, strong) PFTableView *tableView;
 @property (nonatomic, strong) NSArray *items;
 @property (nonatomic, assign) BOOL isShown;
@@ -96,7 +97,7 @@
     [self.tableView reloadData];
     
     // Init background view (under table view)
-    self.backgroundView = [[UIView alloc] initWithFrame:self.mainScreenBounds];
+    self.backgroundView = [[PFBackgroundView alloc] initWithFrame:self.mainScreenBounds];
     self.backgroundView.backgroundColor = self.configuration.maskBackgroundColor;
     
     // Add background view & table view to container view

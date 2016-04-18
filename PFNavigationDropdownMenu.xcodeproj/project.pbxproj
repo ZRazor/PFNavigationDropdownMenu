@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		58AAAE735E1D376D81CB5AAD /* PFBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 58AAA22C50FF81F418EB060D /* PFBackgroundView.m */; };
 		9211C2311B6E0BDD00623B91 /* PFConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 9211C2271B6E0BDD00623B91 /* PFConfiguration.m */; };
 		9211C2321B6E0BDD00623B91 /* PFNavigationDropdownMenu.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9211C2281B6E0BDD00623B91 /* PFNavigationDropdownMenu.bundle */; };
 		9211C2331B6E0BDD00623B91 /* PFNavigationDropdownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 9211C22A1B6E0BDD00623B91 /* PFNavigationDropdownMenu.m */; };
@@ -33,6 +34,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		58AAA22C50FF81F418EB060D /* PFBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFBackgroundView.m; sourceTree = "<group>"; };
+		58AAA95EF246FFD5BDF3AF5D /* PFBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFBackgroundView.h; sourceTree = "<group>"; };
 		79F5CDACBDB6E16D368B706A /* Pods-PFNavigationDropdownMenu.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PFNavigationDropdownMenu.release.xcconfig"; path = "Pods/Target Support Files/Pods-PFNavigationDropdownMenu/Pods-PFNavigationDropdownMenu.release.xcconfig"; sourceTree = "<group>"; };
 		9211C2261B6E0BDD00623B91 /* PFConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFConfiguration.h; sourceTree = "<group>"; };
 		9211C2271B6E0BDD00623B91 /* PFConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFConfiguration.m; sourceTree = "<group>"; };
@@ -103,6 +106,8 @@
 				9211C22E1B6E0BDD00623B91 /* PFTableView.m */,
 				9211C22F1B6E0BDD00623B91 /* PFTableViewCell.h */,
 				9211C2301B6E0BDD00623B91 /* PFTableViewCell.m */,
+				58AAA22C50FF81F418EB060D /* PFBackgroundView.m */,
+				58AAA95EF246FFD5BDF3AF5D /* PFBackgroundView.h */,
 			);
 			path = Classes;
 			sourceTree = SOURCE_ROOT;
@@ -287,6 +292,7 @@
 				9211C2361B6E0BDD00623B91 /* PFTableViewCell.m in Sources */,
 				9211C2311B6E0BDD00623B91 /* PFConfiguration.m in Sources */,
 				92E1F1191B6DB0E5005C3C51 /* main.m in Sources */,
+				58AAAE735E1D376D81CB5AAD /* PFBackgroundView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
