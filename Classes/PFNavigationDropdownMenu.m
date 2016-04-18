@@ -63,6 +63,7 @@
                                                                        self.mainScreenBounds.size.height + 300 - 64)
                                                       items:items
                                               configuration:self.configuration];
+        [self.tableView setAlwaysBounceVertical:self.configuration.bounceVertical];
         __weak typeof(self) weakSelf = self;
         self.tableView.selectRowAtIndexPathHandler = ^(NSUInteger indexPath){
             __strong typeof(weakSelf) strongSelf = weakSelf;
@@ -272,6 +273,12 @@
 {
     self.configuration.hideSelectedCell = hideSelectedCell;
     [self.tableView reloadData];
+}
+
+- (void)setBounceVertical:(BOOL)bounceVertical
+{
+    self.configuration.bounceVertical = bounceVertical;
+    [self.tableView setAlwaysBounceVertical:self.configuration.bounceVertical];
 }
 
 @end

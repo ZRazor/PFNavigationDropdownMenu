@@ -22,4 +22,5 @@
 @property (nonatomic, strong) UIColor *maskBackgroundColor;
 @property (nonatomic, assign) CGFloat maskBackgroundOpacity;
 @property (nonatomic, assign) BOOL hideSelectedCell;
+@property (nonatomic, assign) BOOL bounceVertical;
 @end
