@@ -1,10 +1,10 @@
 # PFNavigationDropdownMenu
 [![Cocoapods](https://cocoapod-badges.herokuapp.com/v/PFNavigationDropdownMenu/badge.png)](http://cocoapods.org/?q=PFNavigationDropdownMenu)
 
-The Objective-C version of [BTNavigationDropdownMenu](https://github.com/PhamBaTho/BTNavigationDropdownMenu). Supports iOS 7.0+.
+Fork of [PFNavigationDropdownMenu](https://github.com/PerfectFreeze/PFNavigationDropdownMenu) The Objective-C version of [BTNavigationDropdownMenu](https://github.com/PhamBaTho/BTNavigationDropdownMenu). Supports iOS 7.0+.
 
 ## Installation
-The simplest option is to use `pod "PFNavigationDropdownMenu"`.
+The simplest option is to use `pod 'PFNavigationDropdownMenu', :git => 'https://github.com/ZRazor/PFNavigationDropdownMenu.git'`.
 
 You can also add the `Classes` folder to your project. There are no further requirements.
 
