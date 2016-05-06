@@ -24,7 +24,7 @@
         self.cellContentFrame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, isSelected ? 0 : self.configuration.cellHeight);
         self.contentView.backgroundColor = self.configuration.cellBackgroundColor;
         self.selectionStyle = UITableViewCellSelectionStyleNone;
-        self.textLabel.textAlignment = NSTextAlignmentLeft;
+        self.textLabel.textAlignment = NSTextAlignmentCenter;
         self.textLabel.textColor = self.configuration.cellTextLabelColor;
         self.textLabel.font = self.configuration.cellTextLabelFont;
         self.textLabel.frame = CGRectMake(20, 0, self.cellContentFrame.size.width, self.cellContentFrame.size.height);
