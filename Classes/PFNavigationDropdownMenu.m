@@ -129,7 +129,7 @@
                           delay:0
          usingSpringWithDamping:.7
           initialSpringVelocity:.5
-                        options:nil
+                        options:UIViewAnimationOptionTransitionNone
                      animations:^{
                          self.tableView.frame = CGRectMake(self.tableView.frame.origin.x,
                                  -300,
@@ -156,7 +156,7 @@
                           delay:0
          usingSpringWithDamping:.7
           initialSpringVelocity:.5
-                        options:nil
+                        options:UIViewAnimationOptionTransitionNone
                      animations:^{
                          self.tableView.frame = CGRectMake(self.tableView.frame.origin.x,
                                  -200,
