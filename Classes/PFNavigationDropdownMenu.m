@@ -1,4 +1,4 @@
-//
+ //
 //  PFNavigationDropdownMenu.m
 //  PFNavigationDropdownMenu
 //
@@ -45,16 +45,13 @@
         self.menuButton = [[UIButton alloc] initWithFrame:frame];
         [self.menuButton addTarget:self action:@selector(menuButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:self.menuButton];
-
-        self.menuTitle = [[UILabel alloc] initWithFrame:frame];
-        self.menuTitle.text = title;
-        self.menuTitle.textColor = self.configuration.menuTitleColor;
-        self.menuTitle.textAlignment = NSTextAlignmentCenter;
-        self.menuTitle.font = self.configuration.cellTextLabelFont;
-        [self.menuButton addSubview:self.menuTitle];
-
-        self.menuArrow = [[UIImageView alloc] initWithImage:self.configuration.arrowImage];
-        [self.menuButton addSubview:self.menuArrow];
+        
+        [self.menuButton setTitle:title forState:UIControlStateNormal];
+        [self.menuButton setImage:self.configuration.arrowImage forState:UIControlStateNormal];
+        
+        self.menuButton.transform = CGAffineTransformMakeScale(-1.0, 1.0);
+        self.menuButton.titleLabel.transform = CGAffineTransformMakeScale(-1.0, 1.0);
+        self.menuButton.imageView.transform = CGAffineTransformMakeScale(-1.0, 1.0);
 
         // Init table view
         self.tableView = [[PFTableView alloc] initWithFrame:CGRectMake(self.mainScreenBounds.origin.x,
@@ -109,8 +106,6 @@
     [self.tableContainerView addSubview:self.backgroundView];
     [self.tableContainerView addSubview:self.tableView];
 
-    // Rotate arrow
-    [self rotateArrow];
 
     // Change background alpha
     self.backgroundView.alpha = 0;
@@ -136,6 +131,7 @@
                                  self.tableView.frame.size.width,
                                  self.tableView.frame.size.height);
                          self.backgroundView.alpha = self.configuration.maskBackgroundOpacity;
+//                         [self.menuButton.imageView setTransform:CGAffineTransformMakeRotation(0)];
 
                      }
                      completion:nil];
@@ -146,8 +142,6 @@
     if ([self.tableContainerView isKindOfClass:[UIScrollView class]]) {
         [(UIScrollView *)self.tableContainerView setScrollEnabled:self.containerViewScrollEnabled];
     }
-    // Rotate arrow
-    [self rotateArrow];
 
     // Change background alpha
     self.backgroundView.alpha = self.configuration.maskBackgroundOpacity;
@@ -163,6 +157,7 @@
                                  self.tableView.frame.size.width,
                                  self.tableView.frame.size.height);
                          self.backgroundView.alpha = self.configuration.maskBackgroundOpacity;
+//                         [self.menuButton.imageView setTransform:CGAffineTransformMakeRotation(M_PI)];
 
                      }
                      completion:nil];
@@ -193,23 +188,27 @@
     [UIView animateWithDuration:self.configuration.animationDuration
                      animations:^{
                          __strong typeof(weakSelf) strongSelf = weakSelf;
-                         strongSelf.menuArrow.transform = CGAffineTransformRotate(strongSelf.menuArrow.transform, 180 * (CGFloat)(M_PI / 180));
+                         strongSelf.menuButton.imageView.transform = CGAffineTransformRotate(strongSelf.menuButton.imageView.transform, 180 * (CGFloat)(M_PI / 180));
+                     } completion:^(BOOL finished){
+                         [self.menuButton setUserInteractionEnabled:YES];
                      }];
 }
 
 - (void)setMenuTitleText:(NSString *)title
 {
-    self.menuTitle.text = title;
+    [self.menuButton setTitle:title forState:UIControlStateNormal];
 }
 
 - (void)menuButtonTapped:(UIButton *)sender
 {
     self.isShown = !self.isShown;
+    [self.menuButton setUserInteractionEnabled:NO];
     if (self.isShown) {
         [self showMenu];
     } else {
         [self hideMenu];
     }
+    [self rotateArrow];
 }
 
 #pragma mark - Setters
